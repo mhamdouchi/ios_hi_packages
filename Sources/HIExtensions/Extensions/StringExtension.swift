@@ -55,8 +55,8 @@ public extension String {
         return localizedString
     }
 
-    func localized(with arguments: [CVarArg]) -> String {
-        String(format: NSLocalizedString(self, comment: kEmptyString), arguments: arguments)
+    func localized(with arguments: [CVarArg], for language: String? = nil) -> String {
+        String(format: localized(language), arguments: arguments)
     }
 }
 
