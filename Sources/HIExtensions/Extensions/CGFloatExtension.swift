@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension CGFloat {
+public extension CGFloat {
     static var statusBarHeight: CGFloat {
         let window = UIApplication.shared.windows.filter { $0.isKeyWindow }.first
         let statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
