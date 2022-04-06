@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Bundle {
+public extension Bundle {
     var versionNumber: String? {
         infoDictionary?["CFBundleShortVersionString"] as? String
     }

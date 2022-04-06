@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UINavigationController {
+public extension UINavigationController {
     static let defaultFont = UIFont(name: "HelveticaNeue-CondensedBold", size: 18.0)!
 
     func stylizePromptBar(_ font: UIFont = UINavigationController.defaultFont, textColor: UIColor = .systemBlue) {
