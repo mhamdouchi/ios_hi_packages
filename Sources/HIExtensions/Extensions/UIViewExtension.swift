@@ -77,19 +77,25 @@ public extension UIView {
 
 // MARK: - Movement
 public extension UIView {
-    func startJiggling() {
+    enum JigglingCount: Float {
+        case short = 6
+        case medium = 12
+        case long = 24
+    }
+
+    func startJiggling(_ count: JigglingCount = .long) {
         let positionAnimation = CABasicAnimation(keyPath: "position")
         positionAnimation.fromValue = NSValue(cgPoint: CGPoint(x: center.x - 2, y: center.y))
         positionAnimation.toValue = NSValue(cgPoint: CGPoint(x: center.x + 2, y: center.y))
         positionAnimation.duration = 0.05
-        positionAnimation.repeatCount = 25
+        positionAnimation.repeatCount = count
         positionAnimation.autoreverses = true
 
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateAnimation.fromValue = CGFloat(Double.pi * -0.1)
         rotateAnimation.toValue = CGFloat(Double.pi * 0.1)
         rotateAnimation.duration = 0.05
-        rotateAnimation.repeatCount = 25
+        rotateAnimation.repeatCount = count
         rotateAnimation.autoreverses = true
 
         Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false, block: { _ in
