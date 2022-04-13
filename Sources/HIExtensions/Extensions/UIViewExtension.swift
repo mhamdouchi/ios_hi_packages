@@ -77,7 +77,13 @@ public extension UIView {
 
 // MARK: - Movement
 public extension UIView {
-    func startJiggling() {
+    enum JigglingAmount: Float {
+        case short = 6
+        case medium = 12
+        case long = 24
+    }
+
+    func startJiggling(_: JigglingAmount = .long) {
         let positionAnimation = CABasicAnimation(keyPath: "position")
         positionAnimation.fromValue = NSValue(cgPoint: CGPoint(x: center.x - 2, y: center.y))
         positionAnimation.toValue = NSValue(cgPoint: CGPoint(x: center.x + 2, y: center.y))
