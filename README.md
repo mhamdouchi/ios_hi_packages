@@ -12,3 +12,11 @@ The purpose of this repository is to provide reusable components for Swift. Thes
 `PaddingLabel`: Provides a UILabel subclass with optional padding around the label.
 
 `StrokeLabel`: Provides a UILabel subclass with stroke around the letters. 
+
+
+# Extensions
+`BinaryInteger`: Provides helper methods for even and odd numbers.
+
+`BundleExtension`: Provides helper methods for accessing app `versionNumber` and `buildNumber`
+
+`CGFloatExtension`: Provides a static var for `statusBarHeight`. This is especially helpful when you need to draw a view under the status bar for an iPhone with and without the notch.
