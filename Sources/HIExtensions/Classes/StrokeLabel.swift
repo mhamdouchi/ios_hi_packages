@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class StrokeLabel: UILabel {
+public class StrokeLabel: PaddingLabel {
     public var strokeSize: CGFloat = 0
     public var strokeColor: UIColor = .clear
 
