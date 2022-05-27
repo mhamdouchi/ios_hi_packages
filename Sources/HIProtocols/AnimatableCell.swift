@@ -7,12 +7,30 @@
 
 import UIKit
 
+public enum AnimationStyle {
+    case horizontal
+    case vertical
+    case fade
+
+    public var duration: TimeInterval {
+        switch self {
+            case .fade:
+                return 0.8
+
+            default:
+                return 0.3
+        }
+    }
+
+    public var delay: TimeInterval { 0.1 }
+}
+
 public protocol AnimatableCell: UITableViewCell {
-    func animate(_ orientation: UITableView.AnimationStyle, size: CGSize)
+    func animate(_ orientation: AnimationStyle, size: CGSize)
 }
 
 public extension AnimatableCell {
-    func animate(_ style: UITableView.AnimationStyle, size: CGSize) {
+    func animate(_ style: AnimationStyle, size: CGSize) {
         switch style {
             case .horizontal:
                 transform = CGAffineTransform(translationX: size.width, y: .zero)

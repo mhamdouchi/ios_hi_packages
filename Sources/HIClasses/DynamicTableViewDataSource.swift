@@ -5,6 +5,8 @@
 //  Created by Yasseen Hamdouchi on 3/29/21.
 //
 
+import HIExtensions
+import HIProtocols
 import UIKit
 
 public class DynamicTableViewDataSource: NSObject {

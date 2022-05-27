@@ -5,27 +5,10 @@
 //  Created by Mohamed Hamdouchi on 3/10/22.
 //
 
+import HIProtocols
 import UIKit
 
 public extension UITableView {
-    enum AnimationStyle {
-        case horizontal
-        case vertical
-        case fade
-
-        var duration: TimeInterval {
-            switch self {
-                case .fade:
-                    return 0.8
-
-                default:
-                    return 0.3
-            }
-        }
-
-        var delay: TimeInterval { 0.1 }
-    }
-
     func reloadWithAnimation(_ style: AnimationStyle = .fade) {
         reloadData()
         UIDevice.playHapticImpact(with: .light)

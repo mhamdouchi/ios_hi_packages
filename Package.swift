@@ -4,16 +4,20 @@
 import PackageDescription
 
 let package = Package(
-    name: "HIExtensions",
+    name: "HIPackages",
     platforms: [
         .iOS(.v14),
     ],
     products: [
+        .library(name: "HIClasses", targets: ["HIClasses"]),
         .library(name: "HIExtensions", targets: ["HIExtensions"]),
+        .library(name: "HIProtocols", targets: ["HIProtocols"]),
     ],
     dependencies: [],
     targets: [
-        .target(name: "HIExtensions", dependencies: [], resources: [.process("Resources")]),
+        .target(name: "HIClasses", dependencies: ["HIExtensions"]),
+        .target(name: "HIExtensions", dependencies: ["HIProtocols"]),
+        .target(name: "HIProtocols", dependencies: []),
         .testTarget(name: "HIExtensionsTests", dependencies: ["HIExtensions"]),
     ]
 )
