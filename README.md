@@ -37,3 +37,22 @@ The purpose of this repository is to provide reusable components for Swift. Thes
     1. group by: creates an array of items grouped by the provided key.
     2. limit: allows to retrieve the first n items in the Sequence.
     3. unique: eliminates duplicate items without altering the order of the sequence.
+
+`SKStoreReviewController`: Provides a helper method to request review for the app.
+
+`StringExtension`: Provides several helper variables and methods. 
+    1. Converting a string to Bool, Double, Int, etc.
+    2. Returning numbers only, or letters only, or both from a string.
+    3. Localizing a string, optionally with a language code.
+    4. Converting a string to a Date if possible.
+    5. Checking if a string has only numbers.
+    6. Generating a UUID.
+    7. Checking if a string has only letters.
+
+`UIAlertControllerExtension`: Provides a helper to add multiple actions instead of one at a time.
+
+`UIColorExtension`: Provides helper methods to convert a hex or a string value to a color.
+
+`UIDeviceExtension`: Provides helper variables and methods such as `modelName`, `hasNotch`, `vibrate the device`, and `play haptics`.
+
+`UILabelExtension`: Provides methods to highlight text as well as setting up a custom font and style.
