@@ -148,6 +148,6 @@ private extension ConfettiView {
                 return customImage
         }
 
-        return UIImage(named: fileName, in: Bundle.module, compatibleWith: traitCollection)
+        return UIImage(named: fileName, in: nil, compatibleWith: traitCollection)
     }
 }
