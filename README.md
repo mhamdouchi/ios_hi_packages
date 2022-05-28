@@ -42,11 +42,17 @@ The purpose of this repository is to provide reusable components for Swift. Thes
 
 `StringExtension`: Provides several helper variables and methods. 
     1. Converting a string to Bool, Double, Int, etc.
+    
     2. Returning numbers only, or letters only, or both from a string.
+    
     3. Localizing a string, optionally with a language code.
+    
     4. Converting a string to a Date if possible.
+    
     5. Checking if a string has only numbers.
+    
     6. Generating a UUID.
+    
     7. Checking if a string has only letters.
 
 `UIAlertControllerExtension`: Provides a helper to add multiple actions instead of one at a time.
