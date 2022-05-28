@@ -39,9 +39,6 @@ public class ConfettiView: UIView {
                                     UIColor.colorWithHex(0x4CC2D9),
                                     UIColor.colorWithHex(0x94638C)]
 
-    /// The intensity refers to how many particles are generated and how quickly they fall.
-    /// Set the intensity of the confetti with the .intensity property by passing in a value between `0` and `1`.
-    /// The default intensity is `0.5`.
     public var intensity: Float = 0.5 {
         didSet {
             // clamp the intensity
@@ -50,8 +47,6 @@ public class ConfettiView: UIView {
         }
     }
 
-    /// Pick one of the preconfigured types of confetti or create your own by providing a custom image.
-    /// This property defaults to the `.confetti` type.
     public var type: ConfettiType = .confetti {
         didSet {
             updateEmitterCells()
