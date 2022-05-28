@@ -1,4 +1,4 @@
-# HI Extensions
+# HI Packages
 
 The purpose of this repository is to provide reusable components for Swift. These components come in the form of Classes, Extensions, and Protocols.
 
