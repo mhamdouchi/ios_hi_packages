@@ -15,9 +15,7 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        .target(name: "HIClasses", dependencies: ["HIExtensions"]),
-        .target(name: "HIExtensions", dependencies: ["HIProtocols"]),
-        .target(name: "HIProtocols", dependencies: []),
+        .target(name: "HIClasses"), .target(name: "HIExtensions"), .target(name: "HIProtocols"),
         .testTarget(name: "HIExtensionsTests", dependencies: ["HIExtensions"]),
     ]
 )
