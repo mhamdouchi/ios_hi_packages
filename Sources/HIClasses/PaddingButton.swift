@@ -25,6 +25,6 @@ public class PaddingButton: UIButton {
 
     override public var intrinsicContentSize: CGSize {
         let baseSize = super.intrinsicContentSize
-        return CGSize(width: baseSize.width + 20, height: baseSize.height)
+        return CGSize(width: baseSize.width + widthOffset, height: baseSize.height + heightOffset)
     }
 }
