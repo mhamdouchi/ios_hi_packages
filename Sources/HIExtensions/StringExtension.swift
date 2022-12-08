@@ -25,6 +25,10 @@ public extension String {
         Int(self) ?? nil
     }
 
+    var toData: Data? {
+        data(using: .utf8)
+    }
+
     var toAlphaNumericsOnly: String {
         components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
     }
