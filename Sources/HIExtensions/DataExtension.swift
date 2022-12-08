@@ -9,4 +9,6 @@ import Foundation
 
 public extension Data {
     var hexString: String { map { String(format: "%02.2hhx", $0) }.joined() }
+
+    var toString: String { String(decoding: self, as: UTF8.self) }
 }
