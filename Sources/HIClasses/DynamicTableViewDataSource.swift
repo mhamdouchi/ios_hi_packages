@@ -13,6 +13,10 @@ public class DynamicTableViewDataSource: NSObject {
     private weak var controller: UIViewController?
     private(set) var cellProxies: [DynamicTableViewCellProxy] = []
 
+    public var count: Int {
+        cellProxies.count
+    }
+
     public init(controller: UIViewController, cellProxies: [DynamicTableViewCellProxy]) {
         self.controller = controller
         self.cellProxies = cellProxies
