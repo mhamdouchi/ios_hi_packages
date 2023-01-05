@@ -49,6 +49,12 @@ public extension Date {
 }
 
 public extension Date {
+    static func now() -> String {
+        Date().format(.iso8601WithFraction)
+    }
+}
+
+public extension Date {
     enum DateFormats {
         case full
         case iso8601
