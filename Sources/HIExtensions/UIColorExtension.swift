@@ -8,6 +8,12 @@
 import UIKit
 
 public extension UIColor {
+    convenience init(_ colorName: String) {
+        self.init(named: colorName)!
+    }
+}
+
+public extension UIColor {
     static func colorWithHexString(_ hexString: String, alphaValue: CGFloat = 1) -> UIColor {
         var cString: String = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
