@@ -23,25 +23,25 @@ public extension Double {
 
         switch style {
             case .currencyDisplay:
-                result = formatCurrencyDisplay(self) ?? kEmptyString
+                result = formatCurrencyDisplay() ?? kEmptyString
 
             case .currencyInput:
-                result = formatCurrencyInput(self) ?? kEmptyString
+                result = formatCurrencyInput() ?? kEmptyString
 
             case .minutesSeconds:
-                result = formatMinutesSeconds(self)
+                result = formatMinutesSeconds()
 
             case .number:
-                result = formatNumber(self) ?? kEmptyString
+                result = formatNumber() ?? kEmptyString
 
             case .percent:
-                result = formatPercent(self) ?? kEmptyString
+                result = formatPercent() ?? kEmptyString
 
             case .percentInput:
-                result = formatPercentInput(self) ?? kEmptyString
+                result = formatPercentInput() ?? kEmptyString
 
             case .standard:
-                result = formatStandard(self) ?? kEmptyString
+                result = formatStandard() ?? kEmptyString
         }
 
         return result
@@ -50,10 +50,10 @@ public extension Double {
 
 // MARK: - Private Methods
 extension Double {
-    private func formatCurrencyDisplay(_ value: Double) -> String? {
+    private func formatCurrencyDisplay() -> String? {
         var currency: String = kEmptyString
 
-        let stringValue = value.toString()
+        let stringValue = toString()
         let values = stringValue.split(separator: ".")
 
         guard let decimal = values.first, let decimalInt = Int(decimal) else { return nil }
@@ -107,9 +107,17 @@ extension Double {
                 }
 
                 if !floating.isEmpty {
-                    currency = "$\(formattedDecimal).\(floating)"
+                    if decimalInt >= 0 {
+                        currency = "$\(formattedDecimal).\(floating)"
+                    } else {
+                        currency = "-$\(formattedDecimal.dropFirst()).\(floating)"
+                    }
                 } else {
-                    currency = "$\(formattedDecimal)"
+                    if decimalInt >= 0 {
+                        currency = "$\(formattedDecimal)"
+                    } else {
+                        currency = "-$\(formattedDecimal.dropFirst())"
+                    }
                 }
 
             default:
@@ -119,7 +127,7 @@ extension Double {
         return currency
     }
 
-    private func formatCurrencyInput(_: Double) -> String? {
+    private func formatCurrencyInput() -> String? {
         let numberFormatter = NumberFormatter()
 
         numberFormatter.numberStyle = .decimal
@@ -131,7 +139,7 @@ extension Double {
         return formattedCurrency
     }
 
-    private func formatMinutesSeconds(_: Double) -> String {
+    private func formatMinutesSeconds() -> String {
         let time = NSInteger(self)
 
         let minutes = (time / 60) % 60
@@ -140,7 +148,7 @@ extension Double {
         return String(format: "%0.2d:%0.2d", minutes, seconds)
     }
 
-    private func formatNumber(_: Double) -> String? {
+    private func formatNumber() -> String? {
         let numberFormatter = NumberFormatter()
 
         numberFormatter.numberStyle = .decimal
@@ -152,10 +160,10 @@ extension Double {
         return formattedCurrency
     }
 
-    private func formatPercent(_ value: Double) -> String? {
+    private func formatPercent() -> String? {
         var percent: String = kEmptyString
 
-        let stringValue = value.toString()
+        let stringValue = toString()
         let values = stringValue.split(separator: ".")
 
         guard let decimal = values.first, let decimalInt = Int(decimal) else { return nil }
@@ -221,7 +229,7 @@ extension Double {
         return percent
     }
 
-    private func formatPercentInput(_: Double) -> String? {
+    private func formatPercentInput() -> String? {
         let numberFormatter = NumberFormatter()
 
         numberFormatter.numberStyle = .decimal
@@ -233,10 +241,10 @@ extension Double {
         return formattedCurrency
     }
 
-    private func formatStandard(_ value: Double) -> String? {
+    private func formatStandard() -> String? {
         var standard: String = kEmptyString
 
-        let stringValue = value.toString()
+        let stringValue = toString()
         let values = stringValue.split(separator: ".")
         guard let decimal = values.first, let decimalInt = Int(decimal) else { return nil }
 

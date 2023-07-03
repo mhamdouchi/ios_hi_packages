@@ -5,9 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "HIPackages",
-    platforms: [
-        .iOS(.v14),
-    ],
+    platforms: [.iOS(.v14)],
     products: [
         .library(name: "HIClasses", targets: ["HIClasses"]),
         .library(name: "HIExtensions", targets: ["HIExtensions"]),
