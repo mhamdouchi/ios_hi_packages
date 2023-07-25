@@ -12,33 +12,37 @@ public extension String {
     var toBool: Bool {
         Bool(self) ?? false
     }
-
+    
     var toDouble: Double {
         let value = preparedToDecimalNumberConversion
-
+        
         guard let doubleValue = Double(value) else { return .zero }
-
+        
         return doubleValue
     }
-
+    
     var toInt: Int? {
         Int(self) ?? nil
     }
-
+    
     var toData: Data? {
         data(using: .utf8)
     }
-
+    
     var toAlphaNumericsOnly: String {
         components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
     }
-
+    
     var toLettersOnly: String {
         components(separatedBy: CharacterSet.letters.inverted).joined()
     }
-
+    
     var toNumbersOnly: String {
         components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+    }
+    
+    var removeSpaces: String {
+        components(separatedBy: .whitespaces).joined()
     }
 }
 
@@ -108,22 +112,27 @@ public extension String {
 // MARK: - Letters Check
 public extension String {
     enum LettersType {
-        case lettersOnly
-        case lettersPlusSpace
-        case lettersPlusSpaceAndPeriod
+        case lettersWithCustom(String)
+        case numbersWithCustom(String)
+        case alphaNumericWithCustom(String)
+
+        static let letters: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        static let numbers: String = "1234567890"
 
         var value: String {
             switch self {
-                case .lettersOnly: return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                case .lettersPlusSpace: return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                case .lettersPlusSpaceAndPeriod: return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ."
+                case let .lettersWithCustom(customCharacters): return Self.letters + customCharacters
+                case let .numbersWithCustom(customNumbers): return Self.numbers + customNumbers
+                case let .alphaNumericWithCustom(customNumbers): return Self.letters + Self.numbers + customNumbers
             }
         }
     }
 
-    func hasLettersOnly(_ type: LettersType = .lettersOnly) -> Bool {
+    func hasLettersOnly(_ type: LettersType = .lettersWithCustom(kEmptyString)) -> Bool {
         let characterSet = NSMutableCharacterSet()
+
         characterSet.addCharacters(in: type.value)
+
         return rangeOfCharacter(from: characterSet.inverted as CharacterSet) == nil
     }
 }
