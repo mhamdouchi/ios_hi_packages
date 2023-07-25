@@ -12,33 +12,37 @@ public extension String {
     var toBool: Bool {
         Bool(self) ?? false
     }
-
+    
     var toDouble: Double {
         let value = preparedToDecimalNumberConversion
-
+        
         guard let doubleValue = Double(value) else { return .zero }
-
+        
         return doubleValue
     }
-
+    
     var toInt: Int? {
         Int(self) ?? nil
     }
-
+    
     var toData: Data? {
         data(using: .utf8)
     }
-
+    
     var toAlphaNumericsOnly: String {
         components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
     }
-
+    
     var toLettersOnly: String {
         components(separatedBy: CharacterSet.letters.inverted).joined()
     }
-
+    
     var toNumbersOnly: String {
         components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+    }
+    
+    var removeSpaces: String {
+        components(separatedBy: .whitespaces).joined()
     }
 }
 
@@ -111,19 +115,25 @@ public extension String {
         case lettersOnly
         case lettersPlusSpace
         case lettersPlusSpaceAndPeriod
+        case lettersPlusCustom(String)
+        
+        static let letters: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
         var value: String {
             switch self {
-                case .lettersOnly: return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                case .lettersPlusSpace: return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                case .lettersPlusSpaceAndPeriod: return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ."
+                case .lettersOnly: return Self.letters
+                case .lettersPlusSpace: return Self.letters + " "
+                case .lettersPlusSpaceAndPeriod: return Self.letters + " ."
+                case let .lettersPlusCustom(customCharacters): return Self.letters + customCharacters
             }
         }
     }
 
     func hasLettersOnly(_ type: LettersType = .lettersOnly) -> Bool {
         let characterSet = NSMutableCharacterSet()
+
         characterSet.addCharacters(in: type.value)
+
         return rangeOfCharacter(from: characterSet.inverted as CharacterSet) == nil
     }
 }
