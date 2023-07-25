@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UIImageExtension.swift
 //  
 //
 //  Created by Mohamed Hamdouchi on 7/4/23.
