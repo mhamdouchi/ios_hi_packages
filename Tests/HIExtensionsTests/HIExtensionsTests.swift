@@ -75,4 +75,22 @@ final class HIExtensionsTests: XCTestCase {
         XCTAssertEqual(0.0029.format(with: .standard), "0.0029")
         XCTAssertEqual(0.0.format(with: .standard), "0")
     }
+    
+    func testIntToOrdinalStringConversion() {
+        XCTAssertEqual(1.toOrdinal(), "1st")
+        XCTAssertEqual(2.toOrdinal(), "2nd")
+        XCTAssertEqual(3.toOrdinal(), "3rd")
+        XCTAssertEqual(4.toOrdinal(), "4th")
+        XCTAssertEqual(10.toOrdinal(), "10th")
+        XCTAssertEqual(11.toOrdinal(), "11th")
+        XCTAssertEqual(12.toOrdinal(), "12th")
+        XCTAssertEqual(13.toOrdinal(), "13th")
+        XCTAssertEqual(14.toOrdinal(), "14th")
+        XCTAssertEqual(21.toOrdinal(), "21st")
+        XCTAssertEqual(22.toOrdinal(), "22nd")
+        XCTAssertEqual(23.toOrdinal(), "23rd")
+        XCTAssertEqual(100.toOrdinal(), "100th")
+        XCTAssertEqual(1000.toOrdinal(), "1000th")
+        XCTAssertEqual(123.toOrdinal(), "123rd")
+    }
 }
