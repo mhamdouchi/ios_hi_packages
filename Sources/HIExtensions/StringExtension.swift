@@ -94,6 +94,8 @@ public extension String {
 // MARK: - Number Check
 public extension String {
     func hasNumbersOnly() -> Bool {
+        guard !isEmpty else { return false }
+        
         let characterSet = NSMutableCharacterSet()
 
         characterSet.addCharacters(in: "0123456789")

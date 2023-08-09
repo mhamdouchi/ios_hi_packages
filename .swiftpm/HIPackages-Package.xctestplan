@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "20592A51-54F2-481D-ACE8-623C3BBFB48D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "HIExtensionsTests",
+        "name" : "HIExtensionsTests"
+      }
+    }
+  ],
+  "version" : 1
+}

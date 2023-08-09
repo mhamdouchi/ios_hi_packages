@@ -1,7 +1,21 @@
+//
+//  StringExtensionTests.swift
+//  
+//
+//  Created by Mohamed Hamdouchi on 8/9/23.
+//
+
 @testable import HIExtensions
+
 import XCTest
 
-final class HIExtensionsTests: XCTestCase {
+final class StringExtensionTests: XCTestCase {
+    func testStringToBool() {
+        XCTAssertTrue("true".toBool)
+        XCTAssertFalse("false".toBool)
+        XCTAssertFalse("invalid".toBool)
+    }
+    
     func testStringToDoubleConversion() {
         XCTAssertEqual("25.5".toDouble, 25.5)
         XCTAssertEqual("25,5".toDouble, 25.5)
@@ -12,6 +26,41 @@ final class HIExtensionsTests: XCTestCase {
         XCTAssertEqual("25.,.,.,5".toDouble, 25.5)
         XCTAssertEqual("2554,55".toDouble, 2554.55)
         XCTAssertEqual("2554.55".toDouble, 2554.55)
+    }
+
+    func testStringToInt() {
+        XCTAssertEqual("123".toInt, 123)
+        XCTAssertEqual("456".toInt, 456)
+        XCTAssertNil("invalid".toInt)
+    }
+    
+    func testStringToData() {
+        XCTAssertEqual("test data".toData, "test data".data(using: .utf8))
+        XCTAssertEqual("".toData, "".data(using: .utf8))
+    }
+    
+    func testStringToAlphaNumericsOnly() {
+        XCTAssertEqual("Hello123".toAlphaNumericsOnly, "Hello123")
+        XCTAssertEqual("Testing!456".toAlphaNumericsOnly, "Testing456")
+        XCTAssertEqual("Special^%Chars".toAlphaNumericsOnly, "SpecialChars")
+    }
+    
+    func testStringToLettersOnly() {
+        XCTAssertEqual("Hello123".toLettersOnly, "Hello")
+        XCTAssertEqual("Testing!456".toLettersOnly, "Testing")
+        XCTAssertEqual("Special^%Chars".toLettersOnly, "SpecialChars")
+    }
+    
+    func testStringToNumbersOnly() {
+        XCTAssertEqual("Hello123".toNumbersOnly, "123")
+        XCTAssertEqual("Testing!456".toNumbersOnly, "456")
+        XCTAssertEqual("Special^%Chars".toNumbersOnly, "")
+    }
+    
+    func testStringRemoveSpaces() {
+        XCTAssertEqual("Hello World".removeSpaces, "HelloWorld")
+        XCTAssertEqual("   Extra   Spaces   ".removeSpaces, "ExtraSpaces")
+        XCTAssertEqual("NoSpaces".removeSpaces, "NoSpaces")
     }
     
     func testDoubleToCurrencyConversion() {
@@ -92,5 +141,56 @@ final class HIExtensionsTests: XCTestCase {
         XCTAssertEqual(100.toOrdinal(), "100th")
         XCTAssertEqual(1000.toOrdinal(), "1000th")
         XCTAssertEqual(123.toOrdinal(), "123rd")
+    }
+    
+    func testStringToDate() {
+        let dateString = "2023-08-09 12:34:56"
+        let date = dateString.toDate
+        
+        XCTAssertNotNil(date)
+        
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date!)
+        
+        XCTAssertEqual(components.year, 2023)
+        XCTAssertEqual(components.month, 8)
+        XCTAssertEqual(components.day, 9)
+        XCTAssertEqual(components.hour, 12)
+        XCTAssertEqual(components.minute, 34)
+        XCTAssertEqual(components.second, 56)
+    }
+        
+    func testInvalidToDate() {
+        let dateString = "invalid-date"
+        let date = dateString.toDate
+        
+        XCTAssertNil(date)
+    }
+    
+    func testInvalidISO8601ToDate() {
+        let dateString = "invalid-date"
+        let date = dateString.iso8601ToDate
+        
+        XCTAssertNil(date)
+    }
+    
+    func testHasNumbersOnly_withNumbersOnly_shouldReturnTrue() {
+        XCTAssertTrue("12345".hasNumbersOnly())
+    }
+    
+    func testHasNumbersOnly_withMixedCharacters_shouldReturnFalse() {
+        XCTAssertFalse("abc123".hasNumbersOnly())
+    }
+    
+    func testHasNumbersOnly_withNoNumbers_shouldReturnFalse() {
+        XCTAssertFalse("abcd".hasNumbersOnly())
+    }
+    
+    func testHasNumbersOnly_withEmptyString_shouldReturnFalse() {
+        XCTAssertFalse("".hasNumbersOnly())
+    }
+    
+    func testHasNumbersOnly_withSpecialCharacters_shouldReturnFalse() {
+        XCTAssertFalse("12@34".hasNumbersOnly())
     }
 }
