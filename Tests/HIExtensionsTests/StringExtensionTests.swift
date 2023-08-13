@@ -193,4 +193,17 @@ final class StringExtensionTests: XCTestCase {
     func testHasNumbersOnly_withSpecialCharacters_shouldReturnFalse() {
         XCTAssertFalse("12@34".hasNumbersOnly())
     }
+    
+    func testValidUUIDString() {
+        XCTAssertTrue("123e4567-e89b-12d3-a456-426655440000".isValidUUIDString())
+        XCTAssertTrue("a1b2c3d4-5678-90ab-cdef-1234567890ab".isValidUUIDString())
+        XCTAssertTrue("FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF".isValidUUIDString())
+    }
+    
+    func testInvalidUUIDString() {
+        XCTAssertFalse("invalid-uuid-string".isValidUUIDString())
+        XCTAssertFalse("123e4567-e89b-12d3-a456-42665544".isValidUUIDString())
+        XCTAssertFalse("a1b2c3d4-5678-90ab-cdef-1234567890abc".isValidUUIDString())
+        XCTAssertFalse("not-even-close".isValidUUIDString())
+    }
 }
