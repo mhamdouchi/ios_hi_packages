@@ -59,6 +59,8 @@ The purpose of this repository is to provide reusable components for Swift. Thes
     
     7. Checking if a string has only letters.
 
+    8. Check if a UUID is valid.
+
 `UIAlertControllerExtension`: Provides a helper to add multiple actions instead of one at a time.
 
 `UIColorExtension`: Provides helper methods to convert a hex or a string value to a color.
