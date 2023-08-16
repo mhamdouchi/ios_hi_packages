@@ -1,6 +1,6 @@
 //
 //  UILabelExtensionTests.swift
-//  
+//
 //
 //  Created by Mohamed Hamdouchi on 8/9/23.
 //
@@ -11,13 +11,13 @@ import XCTest
 
 final class UILabelExtensionTests: XCTestCase {
     var label: UILabel!
-    
+
     override func setUp() {
         super.setUp()
 
         label = UILabel()
     }
-    
+
     override func tearDown() {
         label = nil
 
@@ -30,10 +30,10 @@ final class UILabelExtensionTests: XCTestCase {
         let expectedAttributedString = NSMutableAttributedString()
         expectedAttributedString.append(NSAttributedString(string: "Hello", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .light)]))
         expectedAttributedString.append(NSAttributedString(string: " World", attributes: [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBold", size: 18.0) ?? UIFont.boldSystemFont(ofSize: 18.0)]))
-        
+
         XCTAssertEqual(label.attributedText, expectedAttributedString)
     }
-    
+
     func testSetHighlighted() {
         label.setHighlighted("Hello World", with: "World")
 
@@ -42,20 +42,38 @@ final class UILabelExtensionTests: XCTestCase {
         let highlightedAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.backgroundColor: UIColor.systemYellow]
 
         expectedAttributedString.addAttributes(highlightedAttributes, range: range)
-        
+
         XCTAssertEqual(label.attributedText, expectedAttributedString)
     }
-    
+
     func testSetHighlightedWithColors() {
         label.setHighlighted("Hello World", with: "World", lightColor: .systemGreen, darkColor: .systemBlue)
-        
+
         let expectedAttributedString = NSMutableAttributedString(string: "Hello World")
         let range = NSRange(location: 6, length: 5)
         let highlightColor = label.traitCollection.userInterfaceStyle == .light ? UIColor.systemGreen : UIColor.systemBlue
         let highlightedAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.backgroundColor: highlightColor]
-        
+
         expectedAttributedString.addAttributes(highlightedAttributes, range: range)
-        
+
         XCTAssertEqual(label.attributedText, expectedAttributedString)
+    }
+
+    func testAddStrikethrough() {
+        let label = UILabel()
+        label.text = "Test Text"
+
+        label.addStrikethrough()
+
+        guard let attributedText = label.attributedText else {
+            XCTFail("Attributed text is nil")
+            return
+        }
+
+        var range = NSMakeRange(0, attributedText.length)
+        let attributes = attributedText.attributes(at: 0, effectiveRange: &range)
+        let strikethroughStyle = attributes[NSAttributedString.Key.strikethroughStyle] as? NSNumber
+
+        XCTAssertEqual(strikethroughStyle?.intValue, NSUnderlineStyle.double.rawValue, "Incorrect strikethrough style")
     }
 }

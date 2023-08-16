@@ -1,6 +1,6 @@
 //
 //  BundleExtensionTests.swift
-//  
+//
 //
 //  Created by Mohamed Hamdouchi on 8/9/23.
 //
@@ -14,7 +14,7 @@ class MockBundle: Bundle {
         "CFBundleShortVersionString": "1.2.3",
         "CFBundleVersion": "456",
     ]
-    
+
     override var infoDictionary: [String: Any]? {
         return Self.mockInfoDictionary
     }
@@ -22,16 +22,16 @@ class MockBundle: Bundle {
 
 final class BundleExtensionTests: XCTestCase {
     let mockBundle = MockBundle()
-    
+
     func testBuildNumber() {
         let buildNumber = mockBundle.buildNumber
-        
+
         XCTAssertEqual(buildNumber, "456")
     }
-    
+
     func testVersionNumber() {
         let versionNumber = mockBundle.versionNumber
-        
+
         XCTAssertEqual(versionNumber, "1.2.3")
     }
 }

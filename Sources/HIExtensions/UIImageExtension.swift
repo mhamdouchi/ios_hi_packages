@@ -1,6 +1,6 @@
 //
 //  UIImageExtension.swift
-//  
+//
 //
 //  Created by Mohamed Hamdouchi on 7/4/23.
 //
@@ -17,7 +17,7 @@ public extension UIImage {
         case xLarge = 22
         case xxLarge = 24
     }
-    
+
     func configurePointSize(_ pointSize: PointSize) -> UIImage? {
         withConfiguration(UIImage.SymbolConfiguration(pointSize: pointSize.rawValue))
     }

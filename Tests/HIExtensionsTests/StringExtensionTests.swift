@@ -1,6 +1,6 @@
 //
 //  StringExtensionTests.swift
-//  
+//
 //
 //  Created by Mohamed Hamdouchi on 8/9/23.
 //
@@ -15,7 +15,7 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertFalse("false".toBool)
         XCTAssertFalse("invalid".toBool)
     }
-    
+
     func testStringToDoubleConversion() {
         XCTAssertEqual("25.5".toDouble, 25.5)
         XCTAssertEqual("25,5".toDouble, 25.5)
@@ -33,36 +33,36 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertEqual("456".toInt, 456)
         XCTAssertNil("invalid".toInt)
     }
-    
+
     func testStringToData() {
         XCTAssertEqual("test data".toData, "test data".data(using: .utf8))
         XCTAssertEqual("".toData, "".data(using: .utf8))
     }
-    
+
     func testStringToAlphaNumericsOnly() {
         XCTAssertEqual("Hello123".toAlphaNumericsOnly, "Hello123")
         XCTAssertEqual("Testing!456".toAlphaNumericsOnly, "Testing456")
         XCTAssertEqual("Special^%Chars".toAlphaNumericsOnly, "SpecialChars")
     }
-    
+
     func testStringToLettersOnly() {
         XCTAssertEqual("Hello123".toLettersOnly, "Hello")
         XCTAssertEqual("Testing!456".toLettersOnly, "Testing")
         XCTAssertEqual("Special^%Chars".toLettersOnly, "SpecialChars")
     }
-    
+
     func testStringToNumbersOnly() {
         XCTAssertEqual("Hello123".toNumbersOnly, "123")
         XCTAssertEqual("Testing!456".toNumbersOnly, "456")
         XCTAssertEqual("Special^%Chars".toNumbersOnly, "")
     }
-    
+
     func testStringRemoveSpaces() {
         XCTAssertEqual("Hello World".removeSpaces, "HelloWorld")
         XCTAssertEqual("   Extra   Spaces   ".removeSpaces, "ExtraSpaces")
         XCTAssertEqual("NoSpaces".removeSpaces, "NoSpaces")
     }
-    
+
     func testDoubleToCurrencyConversion() {
         XCTAssertEqual(2500.format(with: .currencyDisplay), "$2,500")
         XCTAssertEqual(25430.format(with: .currencyDisplay), "$25,430")
@@ -85,7 +85,7 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertEqual((-25430).format(with: .currencyDisplay), "-$25,430")
         XCTAssertEqual((-25430.15).format(with: .currencyDisplay), "-$25,430.15")
     }
-    
+
     func testDoubleToPercentConversion() {
         XCTAssertEqual(2500.format(with: .percent), "2,500%")
         XCTAssertEqual(25430.format(with: .percent), "25,430%")
@@ -105,7 +105,7 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertEqual(0.0029.format(with: .percent), "0.01%")
         XCTAssertEqual(0.0.format(with: .percent), "0%")
     }
-    
+
     func testDoubleToStandardConversion() {
         XCTAssertEqual(2500.format(with: .standard), "2,500")
         XCTAssertEqual(25430.format(with: .standard), "25,430")
@@ -124,7 +124,7 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertEqual(0.0029.format(with: .standard), "0.0029")
         XCTAssertEqual(0.0.format(with: .standard), "0")
     }
-    
+
     func testIntToOrdinalStringConversion() {
         XCTAssertEqual(1.toOrdinal(), "1st")
         XCTAssertEqual(2.toOrdinal(), "2nd")
@@ -142,16 +142,16 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertEqual(1000.toOrdinal(), "1000th")
         XCTAssertEqual(123.toOrdinal(), "123rd")
     }
-    
+
     func testStringToDate() {
         let dateString = "2023-08-09 12:34:56"
         let date = dateString.toDate
-        
+
         XCTAssertNotNil(date)
-        
+
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date!)
-        
+
         XCTAssertEqual(components.year, 2023)
         XCTAssertEqual(components.month, 8)
         XCTAssertEqual(components.day, 9)
@@ -159,47 +159,47 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertEqual(components.minute, 34)
         XCTAssertEqual(components.second, 56)
     }
-        
+
     func testInvalidToDate() {
         let dateString = "invalid-date"
         let date = dateString.toDate
-        
+
         XCTAssertNil(date)
     }
-    
+
     func testInvalidISO8601ToDate() {
         let dateString = "invalid-date"
         let date = dateString.iso8601ToDate
-        
+
         XCTAssertNil(date)
     }
-    
+
     func testHasNumbersOnly_withNumbersOnly_shouldReturnTrue() {
         XCTAssertTrue("12345".hasNumbersOnly())
     }
-    
+
     func testHasNumbersOnly_withMixedCharacters_shouldReturnFalse() {
         XCTAssertFalse("abc123".hasNumbersOnly())
     }
-    
+
     func testHasNumbersOnly_withNoNumbers_shouldReturnFalse() {
         XCTAssertFalse("abcd".hasNumbersOnly())
     }
-    
+
     func testHasNumbersOnly_withEmptyString_shouldReturnFalse() {
         XCTAssertFalse("".hasNumbersOnly())
     }
-    
+
     func testHasNumbersOnly_withSpecialCharacters_shouldReturnFalse() {
         XCTAssertFalse("12@34".hasNumbersOnly())
     }
-    
+
     func testValidUUIDString() {
         XCTAssertTrue("123e4567-e89b-12d3-a456-426655440000".isValidUUIDString())
         XCTAssertTrue("a1b2c3d4-5678-90ab-cdef-1234567890ab".isValidUUIDString())
         XCTAssertTrue("FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF".isValidUUIDString())
     }
-    
+
     func testInvalidUUIDString() {
         XCTAssertFalse("invalid-uuid-string".isValidUUIDString())
         XCTAssertFalse("123e4567-e89b-12d3-a456-42665544".isValidUUIDString())

@@ -12,35 +12,35 @@ public extension String {
     var toBool: Bool {
         Bool(self) ?? false
     }
-    
+
     var toDouble: Double {
         let value = preparedToDecimalNumberConversion
-        
+
         guard let doubleValue = Double(value) else { return .zero }
-        
+
         return doubleValue
     }
-    
+
     var toInt: Int? {
         Int(self) ?? nil
     }
-    
+
     var toData: Data? {
         data(using: .utf8)
     }
-    
+
     var toAlphaNumericsOnly: String {
         components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
     }
-    
+
     var toLettersOnly: String {
         components(separatedBy: CharacterSet.letters.inverted).joined()
     }
-    
+
     var toNumbersOnly: String {
         components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
-    
+
     var removeSpaces: String {
         components(separatedBy: .whitespaces).joined()
     }
@@ -95,7 +95,7 @@ public extension String {
 public extension String {
     func hasNumbersOnly() -> Bool {
         guard !isEmpty else { return false }
-        
+
         let characterSet = NSMutableCharacterSet()
 
         characterSet.addCharacters(in: "0123456789")
@@ -145,7 +145,7 @@ public extension String {
         let uuidPattern = #"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"#
         let regex = try! NSRegularExpression(pattern: uuidPattern, options: [])
         let range = NSRange(location: 0, length: utf16.count)
-        
+
         return regex.firstMatch(in: self, options: [], range: range) != nil
     }
 }

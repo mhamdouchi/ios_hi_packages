@@ -47,4 +47,15 @@ public extension UILabel {
         attributedText.addAttributes(highlightedAttributes, range: range)
         self.attributedText = attributedText
     }
+
+    func addStrikethrough() {
+        guard let labelText = text else {
+            return
+        }
+
+        let attributedText = NSMutableAttributedString(string: labelText)
+        attributedText.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.double.rawValue, range: NSMakeRange(0, attributedText.length))
+
+        self.attributedText = attributedText
+    }
 }

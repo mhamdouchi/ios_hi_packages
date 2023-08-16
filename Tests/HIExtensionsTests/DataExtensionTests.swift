@@ -1,6 +1,6 @@
 //
 //  DataExtensionTests.swift
-//  
+//
 //
 //  Created by Mohamed Hamdouchi on 8/9/23.
 //
@@ -15,7 +15,7 @@ final class DataExtensionTests: XCTestCase {
 
         XCTAssertEqual(testData.hexString, "123456789abc")
     }
-    
+
     func testToString() {
         let testString = "Hello, World!"
         let testData = testString.data(using: .utf8)!

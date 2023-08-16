@@ -1,6 +1,6 @@
 //
 //  BinaryIntegerTests.swift
-//  
+//
 //
 //  Created by Mohamed Hamdouchi on 8/9/23.
 //
@@ -16,14 +16,14 @@ final class BinaryIntegerTests: XCTestCase {
         XCTAssertTrue(0.isEven)
         XCTAssertFalse((-1).isEven)
     }
-    
+
     func testIsOdd() {
         XCTAssertFalse(2.isOdd)
         XCTAssertTrue(3.isOdd)
         XCTAssertFalse(0.isOdd)
         XCTAssertTrue((-1).isOdd)
     }
-    
+
     func testToOrdinal() {
         XCTAssertEqual(1.toOrdinal(), "1st")
         XCTAssertEqual(2.toOrdinal(), "2nd")
