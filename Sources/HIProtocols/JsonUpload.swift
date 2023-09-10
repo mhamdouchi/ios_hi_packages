@@ -1,6 +1,5 @@
 //
 //  JsonUpload.swift
-//  DropRate
 //
 //  Created by Mohamed Hamdouchi on 10/2/21.
 //

@@ -117,12 +117,15 @@ public extension UIView {
 // MARK: - Shadow
 public extension UIView {
     enum ShadowStyle {
+        case subtle
         case light
         case medium
         case heavy
 
         var radius: CGFloat {
             switch self {
+                case .subtle:
+                    return 1.0
                 case .light:
                     return 2.0
                 case .medium:
@@ -135,7 +138,7 @@ public extension UIView {
 
     func dropShadow(_ style: ShadowStyle = .medium) {
         layer.masksToBounds = false
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = UIColor.label.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowOffset = CGSize.zero
         layer.shadowRadius = style.radius
