@@ -483,7 +483,6 @@ public extension UIView {
 public extension UIView {
     fileprivate struct AssociatedKeys {
         static var blurView = "blurView"
-        static var vibrancyView = "vibrancyView"
     }
     
     private var blurView: UIVisualEffectView? {
@@ -494,41 +493,23 @@ public extension UIView {
             objc_setAssociatedObject(self, &AssociatedKeys.blurView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
-    
-    private var vibrancyView: UIVisualEffectView? {
-        get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.vibrancyView) as? UIVisualEffectView
-        }
-        set {
-            objc_setAssociatedObject(self, &AssociatedKeys.vibrancyView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-    
-    func addBlurEffect(style: UIBlurEffect.Style = .light, vibrancyStyle: UIVibrancyEffectStyle = .label, alpha: CGFloat = 0.8, bounds: CGRect) {
+        
+    func addBlurEffect(style: UIBlurEffect.Style = .light, alpha: CGFloat = 0.8) {
         if blurView == nil {
             let blurEffect = UIBlurEffect(style: style)
             let blurView = UIVisualEffectView(effect: blurEffect)
             
-            blurView.frame = bounds
+            blurView.frame = UIScreen.main.bounds
             blurView.alpha = alpha
             addSubview(blurView)
             self.blurView = blurView
-            
-            let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect, style: vibrancyStyle)
-            let vibrancyView = UIVisualEffectView(effect: vibrancyEffect)
-            
-            vibrancyView.frame = bounds
-            blurView.contentView.addSubview(vibrancyView)
-            self.vibrancyView = vibrancyView
-            
+
             blurView.isUserInteractionEnabled = false
         }
     }
     
     func removeVibrantBlurEffect() {
-        vibrancyView?.removeFromSuperview()
         blurView?.removeFromSuperview()
-        vibrancyView = nil
         blurView = nil
     }
 }
