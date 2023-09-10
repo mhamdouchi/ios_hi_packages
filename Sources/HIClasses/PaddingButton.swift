@@ -7,22 +7,24 @@
 
 import UIKit
 
-public class PaddingButton: UIButton {
+open class PaddingButton: UIButton {
     private let widthOffset: CGFloat
     private let heightOffset: CGFloat
-
+    
     public init(frame: CGRect, widthOffset: CGFloat = 20, heightOffset: CGFloat = 10) {
         self.widthOffset = widthOffset
         self.heightOffset = heightOffset
-
+        
         super.init(frame: frame)
     }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        self.widthOffset = 20
+        self.heightOffset = 10
 
-    @available(*, unavailable)
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
-
+    
     override public var intrinsicContentSize: CGSize {
         let baseSize = super.intrinsicContentSize
         return CGSize(width: baseSize.width + widthOffset, height: baseSize.height + heightOffset)
