@@ -117,12 +117,15 @@ public extension UIView {
 // MARK: - Shadow
 public extension UIView {
     enum ShadowStyle {
+        case subtle
         case light
         case medium
         case heavy
 
         var radius: CGFloat {
             switch self {
+                case .subtle:
+                    return 1.0
                 case .light:
                     return 2.0
                 case .medium:
