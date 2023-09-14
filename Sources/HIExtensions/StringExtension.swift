@@ -13,10 +13,11 @@ public extension String {
         Bool(self) ?? false
     }
 
-    var toDouble: Double {
+    var toDouble: Double? {
         let value = preparedToDecimalNumberConversion
 
-        guard let doubleValue = Double(value) else { return .zero }
+        guard let doubleValue = Double(value)
+        else { return nil }
 
         return doubleValue
     }
