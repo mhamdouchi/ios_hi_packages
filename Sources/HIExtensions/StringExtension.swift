@@ -45,6 +45,18 @@ public extension String {
     var removeSpaces: String {
         components(separatedBy: .whitespaces).joined()
     }
+    
+    func addCommas() -> String {
+        let formatter = NumberFormatter()
+
+        formatter.numberStyle = .decimal
+
+        guard let number = formatter.number(from: self),
+              let numberWithCommas = formatter.string(from: number)
+        else { return self }
+
+        return numberWithCommas
+    }
 }
 
 // MARK: - Localizable

@@ -63,6 +63,13 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertEqual("NoSpaces".removeSpaces, "NoSpaces")
     }
 
+    func testStringAddCommas() {
+        XCTAssertEqual("Hello World".addCommas(), "Hello World")
+        XCTAssertEqual("123".addCommas(), "123")
+        XCTAssertEqual("1234".addCommas(), "1,234")
+        XCTAssertEqual("1234567890".addCommas(), "1,234,567,890")
+    }
+    
     func testDoubleToCurrencyConversion() {
         XCTAssertEqual(2500.format(with: .currencyDisplay), "$2,500")
         XCTAssertEqual(25430.format(with: .currencyDisplay), "$25,430")
