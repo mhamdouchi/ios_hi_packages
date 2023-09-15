@@ -1,6 +1,6 @@
 //
 //  SKProductExtension.swift
-//  
+//
 //
 //  Created by Mohamed Hamdouchi on 9/10/23.
 //
@@ -18,7 +18,7 @@ public extension SKProduct {
 
         guard let priceLocale = formatter.string(from: price)
         else { return nil }
-        
+
         return priceLocale
     }
 }

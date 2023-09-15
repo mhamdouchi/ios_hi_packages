@@ -27,6 +27,10 @@ final class DoubleFormatTests: XCTestCase {
         XCTAssertEqual(1_234_567.89.format(with: .number), "1,234,567.89")
     }
 
+    func testWholeNumberFormatting() {
+        XCTAssertEqual(1_234_567.format(with: .number), "1,234,567")
+    }
+
     func testPercentFormatting() {
         XCTAssertEqual(0.1234.format(with: .percent), "0.12%")
     }

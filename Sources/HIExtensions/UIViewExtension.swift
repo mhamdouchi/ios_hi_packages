@@ -481,10 +481,10 @@ public extension UIView {
 
 // MARK: - Blur
 public extension UIView {
-    fileprivate struct AssociatedKeys {
+    fileprivate enum AssociatedKeys {
         static var blurView = "blurView"
     }
-    
+
     private var blurView: UIVisualEffectView? {
         get {
             return objc_getAssociatedObject(self, &AssociatedKeys.blurView) as? UIVisualEffectView
@@ -493,12 +493,12 @@ public extension UIView {
             objc_setAssociatedObject(self, &AssociatedKeys.blurView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
-        
+
     func addBlurEffect(style: UIBlurEffect.Style = .light, alpha: CGFloat = 0.5) {
         if blurView == nil {
             let blurEffect = UIBlurEffect(style: style)
             let blurView = UIVisualEffectView(effect: blurEffect)
-            
+
             blurView.alpha = alpha
             addSubview(blurView)
             blurView.align(with: self, constant: -10)
@@ -507,7 +507,7 @@ public extension UIView {
             blurView.isUserInteractionEnabled = false
         }
     }
-    
+
     func removeVibrantBlurEffect() {
         blurView?.removeFromSuperview()
         blurView = nil

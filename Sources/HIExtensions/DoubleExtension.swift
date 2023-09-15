@@ -56,9 +56,10 @@ extension Double {
         let stringValue = toString()
         let values = stringValue.split(separator: ".")
 
-        guard let decimal = values.first, let decimalInt = Int(decimal) else { return nil }
-
-        let formattedDecimal = decimalInt.formatNumber()
+        guard let decimal = values.first,
+              let decimalInt = Int(decimal),
+              let formattedDecimal = decimalInt.formatNumber()
+        else { return nil }
 
         switch values.count {
             case 1:
@@ -134,9 +135,10 @@ extension Double {
         numberFormatter.minimumFractionDigits = 2
         numberFormatter.maximumFractionDigits = 2
 
-        let formattedCurrency = "$\(numberFormatter.string(from: NSNumber(value: self))!)"
+        guard let formattedCurrency = numberFormatter.string(from: NSNumber(value: self))
+        else { return nil }
 
-        return formattedCurrency
+        return "$\(formattedCurrency)"
     }
 
     private func formatMinutesSeconds() -> String {
@@ -152,10 +154,11 @@ extension Double {
         let numberFormatter = NumberFormatter()
 
         numberFormatter.numberStyle = .decimal
-        numberFormatter.minimumFractionDigits = 2
+        numberFormatter.minimumFractionDigits = 0
         numberFormatter.maximumFractionDigits = 2
 
-        let formattedCurrency = "\(numberFormatter.string(from: NSNumber(value: self))!)"
+        guard let formattedCurrency = numberFormatter.string(from: NSNumber(value: self))
+        else { return nil }
 
         return formattedCurrency
     }
@@ -166,9 +169,10 @@ extension Double {
         let stringValue = toString()
         let values = stringValue.split(separator: ".")
 
-        guard let decimal = values.first, let decimalInt = Int(decimal) else { return nil }
-
-        let formattedDecimal = decimalInt.formatNumber()
+        guard let decimal = values.first,
+              let decimalInt = Int(decimal),
+              let formattedDecimal = decimalInt.formatNumber()
+        else { return nil }
 
         switch values.count {
             case 1:
@@ -236,9 +240,10 @@ extension Double {
         numberFormatter.minimumFractionDigits = 2
         numberFormatter.maximumFractionDigits = 0
 
-        let formattedCurrency = "\(numberFormatter.string(from: NSNumber(value: self))!)%"
+        guard let formattedNumber = numberFormatter.string(from: NSNumber(value: self))
+        else { return nil }
 
-        return formattedCurrency
+        return "\(formattedNumber)%"
     }
 
     private func formatStandard() -> String? {
@@ -246,9 +251,10 @@ extension Double {
 
         let stringValue = toString()
         let values = stringValue.split(separator: ".")
-        guard let decimal = values.first, let decimalInt = Int(decimal) else { return nil }
-
-        let formattedDecimal = decimalInt.formatNumber()
+        guard let decimal = values.first,
+              let decimalInt = Int(decimal),
+              let formattedDecimal = decimalInt.formatNumber()
+        else { return nil }
 
         switch values.count {
             case 1:

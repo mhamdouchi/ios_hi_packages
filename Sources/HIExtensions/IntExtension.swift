@@ -8,12 +8,15 @@
 import Foundation
 
 public extension Int {
-    func formatNumber(_ separator: String = ",") -> String {
+    func formatNumber(_ separator: String = ",") -> String? {
         let formatter = NumberFormatter()
 
         formatter.groupingSeparator = separator
         formatter.numberStyle = .decimal
 
-        return formatter.string(from: NSNumber(value: self))!
+        guard let formattedNumber = formatter.string(from: NSNumber(value: self))
+        else { return nil }
+
+        return formattedNumber
     }
 }
