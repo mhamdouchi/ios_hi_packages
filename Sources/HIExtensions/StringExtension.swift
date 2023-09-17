@@ -13,6 +13,18 @@ public extension String {
         Bool(self) ?? false
     }
 
+    var toChar: Character {
+        guard unicodeScalars.count == 1,
+            let firstScalar = unicodeScalars.first
+        else { return Character(" ") }
+
+        return Character(firstScalar)
+    }
+
+    var toData: Data? {
+        data(using: .utf8)
+    }
+    
     var toDouble: Double? {
         let value = preparedToDecimalNumberConversion
 
@@ -24,10 +36,6 @@ public extension String {
 
     var toInt: Int? {
         Int(self) ?? nil
-    }
-
-    var toData: Data? {
-        data(using: .utf8)
     }
 
     var toAlphaNumericsOnly: String {

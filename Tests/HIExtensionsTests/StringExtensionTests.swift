@@ -34,6 +34,14 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertNil("invalid".toInt)
     }
 
+    func testStringToChar() {
+        XCTAssertEqual(".".toChar, ".")
+        XCTAssertEqual("".toChar, Character(" "))
+        XCTAssertEqual(" ".toChar, Character(" "))
+        XCTAssertEqual("+".toChar, Character("+"))
+        XCTAssertEqual("invalid".toChar, Character(" "))
+    }
+
     func testStringToData() {
         XCTAssertEqual("test data".toData, "test data".data(using: .utf8))
         XCTAssertEqual("".toData, "".data(using: .utf8))
