@@ -15,7 +15,7 @@ public extension String {
 
     var toChar: Character {
         guard unicodeScalars.count == 1,
-            let firstScalar = unicodeScalars.first
+              let firstScalar = unicodeScalars.first
         else { return Character(" ") }
 
         return Character(firstScalar)
@@ -24,7 +24,7 @@ public extension String {
     var toData: Data? {
         data(using: .utf8)
     }
-    
+
     var toDouble: Double? {
         let value = preparedToDecimalNumberConversion
 
@@ -53,7 +53,7 @@ public extension String {
     var removeSpaces: String {
         components(separatedBy: .whitespaces).joined()
     }
-    
+
     func addCommas() -> String {
         let formatter = NumberFormatter()
 

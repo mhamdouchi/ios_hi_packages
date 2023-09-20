@@ -230,14 +230,14 @@ extension UIView {
 // MARK: - Constraint
 public extension UIView {
     @discardableResult
-    func align(with view: UIView, constant: CGFloat = .zero) -> [NSLayoutConstraint] {
+    func align(with view: UIView, inset: CGFloat = .zero) -> [NSLayoutConstraint] {
         translatesAutoresizingMaskIntoConstraints = false
 
         let constraints = [
-            leftAnchor.constraint(equalTo: view.leftAnchor, constant: constant),
-            rightAnchor.constraint(equalTo: view.rightAnchor, constant: -constant),
-            topAnchor.constraint(equalTo: view.topAnchor, constant: constant),
-            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -constant),
+            leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
+            topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
+            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset),
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -246,12 +246,12 @@ public extension UIView {
     }
 
     @discardableResult
-    func alignLeadingTrailing(with view: UIView, constant: CGFloat = .zero) -> [NSLayoutConstraint] {
+    func alignLeadingTrailing(with view: UIView, inset: CGFloat = .zero) -> [NSLayoutConstraint] {
         translatesAutoresizingMaskIntoConstraints = false
 
         let constraints = [
-            leftAnchor.constraint(equalTo: view.leftAnchor, constant: constant),
-            rightAnchor.constraint(equalTo: view.rightAnchor, constant: -constant),
+            leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: inset),
+            trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -260,12 +260,12 @@ public extension UIView {
     }
 
     @discardableResult
-    func alignTopBottom(with view: UIView, constant: CGFloat = .zero) -> [NSLayoutConstraint] {
+    func alignTopBottom(with view: UIView, inset: CGFloat = .zero) -> [NSLayoutConstraint] {
         translatesAutoresizingMaskIntoConstraints = false
 
         let constraints = [
-            topAnchor.constraint(equalTo: view.topAnchor, constant: constant),
-            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -constant),
+            topAnchor.constraint(equalTo: view.topAnchor, constant: inset),
+            bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset),
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -274,12 +274,12 @@ public extension UIView {
     }
 
     @discardableResult
-    func alignTopBottom(with layoutGuide: UILayoutGuide, constant: CGFloat = .zero) -> [NSLayoutConstraint] {
+    func alignTopBottom(with layoutGuide: UILayoutGuide, inset: CGFloat = .zero) -> [NSLayoutConstraint] {
         translatesAutoresizingMaskIntoConstraints = false
 
         let constraints = [
-            topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: constant),
-            bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -constant),
+            topAnchor.constraint(equalTo: layoutGuide.topAnchor, constant: inset),
+            bottomAnchor.constraint(equalTo: layoutGuide.bottomAnchor, constant: -inset),
         ]
 
         NSLayoutConstraint.activate(constraints)
@@ -288,12 +288,12 @@ public extension UIView {
     }
 
     @discardableResult
-    func alignTop(to anchor: NSLayoutYAxisAnchor, constant: CGFloat = .zero,
+    func alignTop(to anchor: NSLayoutYAxisAnchor, inset: CGFloat = .zero,
                   priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint
     {
         translatesAutoresizingMaskIntoConstraints = false
 
-        let constraint = topAnchor.constraint(equalTo: anchor, constant: constant)
+        let constraint = topAnchor.constraint(equalTo: anchor, constant: inset)
 
         constraint.priority = priority
         constraint.isActive = isActive
@@ -302,20 +302,20 @@ public extension UIView {
     }
 
     @discardableResult
-    func alignTop(with guide: UILayoutGuide, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
-        alignTop(to: guide.topAnchor, constant: constant, priority: priority, isActive: isActive)
+    func alignTop(with guide: UILayoutGuide, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        alignTop(to: guide.topAnchor, inset: inset, priority: priority, isActive: isActive)
     }
 
     @discardableResult
-    func alignTop(with view: UIView, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
-        alignTop(to: view.topAnchor, constant: constant, priority: priority, isActive: isActive)
+    func alignTop(with view: UIView, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        alignTop(to: view.topAnchor, inset: inset, priority: priority, isActive: isActive)
     }
 
     @discardableResult
-    func alignBottom(to anchor: NSLayoutYAxisAnchor, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+    func alignBottom(to anchor: NSLayoutYAxisAnchor, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
 
-        let constraint = bottomAnchor.constraint(equalTo: anchor, constant: constant)
+        let constraint = bottomAnchor.constraint(equalTo: anchor, constant: inset)
 
         constraint.priority = priority
         constraint.isActive = isActive
@@ -324,20 +324,20 @@ public extension UIView {
     }
 
     @discardableResult
-    func alignBottom(with guide: UILayoutGuide, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
-        alignBottom(to: guide.bottomAnchor, constant: constant, priority: priority, isActive: isActive)
+    func alignBottom(with guide: UILayoutGuide, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        alignBottom(to: guide.bottomAnchor, inset: inset, priority: priority, isActive: isActive)
     }
 
     @discardableResult
-    func alignBottom(with view: UIView, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
-        alignBottom(to: view.bottomAnchor, constant: constant, priority: priority, isActive: isActive)
+    func alignBottom(with view: UIView, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        alignBottom(to: view.bottomAnchor, inset: inset, priority: priority, isActive: isActive)
     }
 
     @discardableResult
-    func alignLeading(to anchor: NSLayoutXAxisAnchor, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+    func alignLeading(to anchor: NSLayoutXAxisAnchor, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
 
-        let constraint = leadingAnchor.constraint(equalTo: anchor, constant: constant)
+        let constraint = leadingAnchor.constraint(equalTo: anchor, constant: inset)
 
         constraint.isActive = isActive
         constraint.priority = priority
@@ -346,15 +346,15 @@ public extension UIView {
     }
 
     @discardableResult
-    func alignLeading(with view: UIView, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
-        alignLeading(to: view.leadingAnchor, constant: constant, priority: priority, isActive: isActive)
+    func alignLeading(with view: UIView, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        alignLeading(to: view.leadingAnchor, inset: inset, priority: priority, isActive: isActive)
     }
 
     @discardableResult
-    func alignTrailing(to anchor: NSLayoutXAxisAnchor, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+    func alignTrailing(to anchor: NSLayoutXAxisAnchor, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
 
-        let constraint = trailingAnchor.constraint(equalTo: anchor, constant: constant)
+        let constraint = trailingAnchor.constraint(equalTo: anchor, constant: inset)
 
         constraint.isActive = isActive
         constraint.priority = priority
@@ -363,25 +363,25 @@ public extension UIView {
     }
 
     @discardableResult
-    func alignTrailing(with view: UIView, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
-        alignTrailing(to: view.trailingAnchor, constant: constant, priority: priority, isActive: isActive)
+    func alignTrailing(with view: UIView, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        alignTrailing(to: view.trailingAnchor, inset: inset, priority: priority, isActive: isActive)
     }
 
     @discardableResult
-    func alignBottom(toTopOf view: UIView, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
-        alignBottom(to: view.topAnchor, constant: constant, priority: priority, isActive: isActive)
+    func alignBottom(toTopOf view: UIView, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        alignBottom(to: view.topAnchor, inset: inset, priority: priority, isActive: isActive)
     }
 
     @discardableResult
-    func alignTrailing(toLeadingOf view: UIView, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
-        alignTrailing(to: view.leadingAnchor, constant: constant, priority: priority, isActive: isActive)
+    func alignTrailing(toLeadingOf view: UIView, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        alignTrailing(to: view.leadingAnchor, inset: inset, priority: priority, isActive: isActive)
     }
 
     @discardableResult
-    func centerVertical(with view: UIView, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+    func centerVertical(with view: UIView, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
 
-        let constraint = centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant)
+        let constraint = centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: inset)
 
         constraint.isActive = isActive
         constraint.priority = priority
@@ -390,10 +390,10 @@ public extension UIView {
     }
 
     @discardableResult
-    func centerHorizontal(with view: UIView, constant: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+    func centerHorizontal(with view: UIView, inset: CGFloat = .zero, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
         translatesAutoresizingMaskIntoConstraints = false
 
-        let constraint = centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: constant)
+        let constraint = centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: inset)
 
         constraint.isActive = isActive
         constraint.priority = priority
@@ -402,8 +402,19 @@ public extension UIView {
     }
 
     @discardableResult
-    func constrainHeight(_ value: CGFloat, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
-        let constraint = heightAnchor.constraint(equalToConstant: value)
+    func constrainHeight(_ value: CGFloat, priority: UILayoutPriority = .required, isActive: Bool = true, relatedBy relation: NSLayoutConstraint.Relation = .equal) -> NSLayoutConstraint {
+        let constraint: NSLayoutConstraint
+
+        switch relation {
+            case .greaterThanOrEqual:
+                constraint = heightAnchor.constraint(greaterThanOrEqualToConstant: value)
+
+            case .lessThanOrEqual:
+                constraint = heightAnchor.constraint(lessThanOrEqualToConstant: value)
+
+            default:
+                constraint = heightAnchor.constraint(equalToConstant: value)
+        }
 
         constraint.isActive = isActive
         constraint.priority = priority
@@ -465,6 +476,16 @@ public extension UIView {
 
         return constraint
     }
+
+    @discardableResult
+    func constrainAspectRatio(ratio: CGFloat = 1, priority: UILayoutPriority = .required, isActive: Bool = true) -> NSLayoutConstraint {
+        let constraint = NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: self, attribute: .height, multiplier: ratio, constant: .zero)
+
+        constraint.isActive = isActive
+        constraint.priority = priority
+
+        return constraint
+    }
 }
 
 // MARK: - Nib
@@ -482,15 +503,16 @@ public extension UIView {
 // MARK: - Blur
 public extension UIView {
     fileprivate enum AssociatedKeys {
-        static var blurView = "blurView"
+        static var blurView = UnsafeRawPointer(bitPattern: "blurView".hashValue)!
     }
 
     private var blurView: UIVisualEffectView? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.blurView) as? UIVisualEffectView
+            return objc_getAssociatedObject(self, AssociatedKeys.blurView) as? UIVisualEffectView
         }
+
         set {
-            objc_setAssociatedObject(self, &AssociatedKeys.blurView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, AssociatedKeys.blurView, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
@@ -501,7 +523,7 @@ public extension UIView {
 
             blurView.alpha = alpha
             addSubview(blurView)
-            blurView.align(with: self, constant: -10)
+            blurView.align(with: self, inset: -10)
             self.blurView = blurView
 
             blurView.isUserInteractionEnabled = false
