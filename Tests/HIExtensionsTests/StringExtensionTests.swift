@@ -221,4 +221,32 @@ final class StringExtensionTests: XCTestCase {
         XCTAssertFalse("a1b2c3d4-5678-90ab-cdef-1234567890abc".isValidUUIDString())
         XCTAssertFalse("not-even-close".isValidUUIDString())
     }
+    
+    func testSha256Hash() {
+        let inputString = "Hello, World!"
+        let expectedHash = "dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f"
+        
+        if let actualHash = inputString.toSha256Hash() {
+            XCTAssertEqual(actualHash, expectedHash, "Hashed value should match the expected hash.")
+        } else {
+            XCTFail("Hashing failed for input string: \(inputString)")
+        }
+    }
+    
+    func testEmptyString() {
+        let inputString = ""
+        let expectedHash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        
+        if let actualHash = inputString.toSha256Hash() {
+            XCTAssertEqual(actualHash, expectedHash, "Hashed value should match the expected hash for an empty string.")
+        } else {
+            XCTFail("Hashing failed for input string: \(inputString)")
+        }
+    }
+    
+    func testNilString() {
+        let inputString: String? = nil
+        
+        XCTAssertNil(inputString?.toSha256Hash(), "Hashing a nil string should result in nil.")
+    }
 }
