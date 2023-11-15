@@ -33,14 +33,14 @@ public extension String {
 
         return rangeOfCharacter(from: characterSet.inverted as CharacterSet) == nil
     }
-    
+
     func hasNumbersOnly() -> Bool {
         guard !isEmpty else { return false }
-        
+
         let characterSet = NSMutableCharacterSet()
-        
+
         characterSet.addCharacters(in: "0123456789")
-        
+
         return rangeOfCharacter(from: characterSet.inverted as CharacterSet) == nil
     }
 }

@@ -17,23 +17,23 @@ public extension UIView {
             completion?()
         }
     }
-    
+
     func shake(withDuration duration: TimeInterval = 0.4, withAmplitude amplitude: CGFloat = 6) {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = duration
         var values: [CGFloat] = []
-        
+
         let numberOfFrames = Int(duration / 0.1)
-        
+
         for _ in 0 ..< numberOfFrames {
             values.append(-amplitude)
             values.append(amplitude)
         }
-        
+
         animation.values = values
         layer.add(animation, forKey: "shake")
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
             self.layer.removeAnimation(forKey: "shake")
         }

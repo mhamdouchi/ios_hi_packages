@@ -5,6 +5,7 @@
 //  Created by Mohamed Hamdouchi on 3/10/22.
 //
 
+import SwiftUI
 import UIKit
 
 public enum AnimationStyle {
@@ -26,7 +27,7 @@ public enum AnimationStyle {
 }
 
 public protocol AnimatableCell: UITableViewCell {
-    func animate(_ orientation: AnimationStyle, size: CGSize)
+    func animate(_ style: AnimationStyle, size: CGSize)
 }
 
 public extension AnimatableCell {
@@ -63,6 +64,27 @@ public extension UITableView {
                 })
 
                 delayCounter += 1
+            }
+        }
+    }
+}
+
+public protocol AnimatableView: View {
+    func animate(_ style: AnimationStyle, size: CGSize)
+}
+
+public extension AnimatableView {
+    mutating func animate(_ style: AnimationStyle, size: CGSize) {
+        withAnimation {
+            switch style {
+                case .horizontal:
+                    self = self.offset(CGSize(width: size.width, height: 0)) as! Self
+
+                case .vertical:
+                    self = self.offset(CGSize(width: 0, height: size.height)) as! Self
+
+                case .fade:
+                    self = self.opacity(0.0) as! Self
             }
         }
     }
